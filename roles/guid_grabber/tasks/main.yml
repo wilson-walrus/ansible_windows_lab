@@ -1,0 +1,13 @@
+---
+- name: Getting GUID
+  shell: "hostname | cut -d '.' -f 2"
+  register: r_guid
+
+- name: Make all caps version
+  shell: "echo {{ r_guid.stdout }} | tr 'a-z' 'A-Z'"
+  register: r_guid_cap
+
+- name: Set guid and guid_cap facts
+  set_fact:
+    guid: "{{ r_guid.stdout }}"
+    guid_cap: "{{ r_guid_cap.stdout }}"

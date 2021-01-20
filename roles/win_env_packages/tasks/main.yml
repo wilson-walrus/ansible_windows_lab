@@ -1,0 +1,10 @@
+---
+- name: Install lab_packages
+  yum:
+    name: "{{ lab_packages }}"
+    state: latest
+
+- name: Install pywinrm[kerberos] with pip
+  pip:
+    name: "{{ pip_packages }}" 
+    state: latest 

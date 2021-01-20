@@ -1,0 +1,23 @@
+---
+- name: Setup Bastion System
+  hosts: localhost
+  connection: local
+  become: false
+  gather_facts: true
+  roles:
+    - guid_grabber
+    - win_env_packages
+    - krb_config
+
+- name: Configure Windows host
+  hosts: windows
+  gather_facts: true
+  pre_tasks:
+    - name: Set GUID facts from localhost
+      set_fact:
+        guid: "{{ hostvars['localhost']['guid'] }}"
+        guid_cap: "{{ hostvars['localhost']['guid_cap'] }}"
+  roles:
+    - win_ad_install
+    - win_service_config
+    - win_ad_user

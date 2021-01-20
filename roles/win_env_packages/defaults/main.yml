@@ -1,0 +1,13 @@
+---
+lab_packages:
+  - python-devel
+  - krb5-devel
+  - krb5-libs
+  - krb5-workstation
+  - python-pip
+  - gcc
+  - python2-winrm
+
+pip_packages:
+  - pip
+  - pywinrm[kerberos]
